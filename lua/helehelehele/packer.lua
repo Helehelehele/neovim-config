@@ -80,4 +80,5 @@ return require('packer').startup(function(use)
 
       use 'JoosepAlviste/nvim-ts-context-commentstring'
 
+      use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
 end)

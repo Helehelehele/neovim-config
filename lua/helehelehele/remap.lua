@@ -31,4 +31,6 @@ vim.keymap.set("n", "<C-Down>", "<C-w>-")
 
 vim.keymap.set("n", "H", vim.cmd.tabprevious)
 vim.keymap.set("n", "L", vim.cmd.tabnext)
+vim.keymap.set("n", "<leader>c", vim.cmd.tabclose)
+
 
