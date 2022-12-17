@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
       use('theprimeagen/harpoon')
       use('tpope/vim-fugitive')
 
-        use {
+    use {
           'VonHeikemen/lsp-zero.nvim',
           requires = {
               -- LSP Support
@@ -73,5 +73,11 @@ return require('packer').startup(function(use)
       }
 
       use 'p00f/nvim-ts-rainbow'
+
+      use 'tpope/vim-commentary'
+
+      use {'stevearc/dressing.nvim'}
+
+      use 'JoosepAlviste/nvim-ts-context-commentstring'
 
 end)
