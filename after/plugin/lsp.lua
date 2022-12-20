@@ -30,15 +30,17 @@ lsp.setup_nvim_cmp({
 lsp.set_preferences({
     suggest_lsp_servers = false,
     sign_icons = {
-        error = 'E',
-        warn = 'W',
-        hint = 'H',
-        info = 'I'
+        error = '✘',
+        warn = '',
+        hint = '',
+        info = '',
     }
 })
 
 vim.diagnostic.config({
     virtual_text = true,
+    signs = true,
+    underline = true,
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -59,6 +61,11 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+  
+  vim.cmd('hi DiagnosticUnderlineError guifg=Red guibg=LightRed gui=undercurl')
+  vim.cmd('hi DiagnosticUnderlineWarn guifg=Orange guibg=LightOrange gui=undercurl')
+  vim.cmd('hi DiagnosticUnderlineInfo guifg=Blue guibg=LightBlue gui=undercurl')
+  vim.cmd('hi DiagnosticUnderlineHint guifg=Green guibg=LightGreen gui=undercurl')
 end)
 
 lsp.setup()

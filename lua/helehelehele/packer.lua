@@ -13,12 +13,6 @@ return require('packer').startup(function(use)
       use({
           'projekt0n/github-nvim-theme',
           config = function()
-              require('github-theme').setup({
-                  theme_style = "dark",
-                  transparent = true
-              })
-
-              vim.cmd("colorscheme github_dark")
           end
       })
 
