@@ -41,6 +41,7 @@ vim.diagnostic.config({
     virtual_text = true,
     signs = true,
     underline = true,
+    update_in_insert = true,
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -66,6 +67,11 @@ lsp.on_attach(function(client, bufnr)
   vim.cmd('hi DiagnosticUnderlineWarn guifg=Orange guibg=LightOrange gui=undercurl')
   vim.cmd('hi DiagnosticUnderlineInfo guifg=Blue guibg=LightBlue gui=undercurl')
   vim.cmd('hi DiagnosticUnderlineHint guifg=Green guibg=LightGreen gui=undercurl')
+
+  vim.cmd('hi DiagnosticFloatingError guifg=LightRed')
+  vim.cmd('hi DiagnosticFloatingWarn guifg=LightOrange')
+  vim.cmd('hi DiagnosticFloatingInfo guifg=LightBlue')
+  vim.cmd('hi DiagnosticFloatingHint guifg=LightGreen')
 end)
 
 lsp.setup()
