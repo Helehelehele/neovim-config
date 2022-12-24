@@ -33,4 +33,5 @@ vim.keymap.set("n", "H", vim.cmd.tabprevious)
 vim.keymap.set("n", "L", vim.cmd.tabnext)
 vim.keymap.set("n", "<leader>c", vim.cmd.tabclose)
 
-
+vim.keymap.set("n", "<C-w>t", ":tabnew | terminal<CR>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")

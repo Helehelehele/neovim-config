@@ -22,3 +22,10 @@ vim.opt.colorcolumn = "80"
 vim.opt.fileformat = "unix"
 
 vim.g.mapleader = " "
+
+if vim.fn.has("win32") == 1 then
+    vim.opt.shell = "C:/Progra~1/Git/bin/bash.exe"
+    vim.opt.shellcmdflag = "--login -i -c"
+    vim.opt.shellxquote = ""
+end
+
