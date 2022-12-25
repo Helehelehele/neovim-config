@@ -31,22 +31,26 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 vim.opt.fillchars = {
-         horiz = "━",
-      --     --   horizup = "┻",
-      --       --   horizdown = "┳",
-      --         --   vert = "┃",
-      --           --   vertleft = "┫",
-      --             --   vertright = "┣",
-      --               --   verthoriz = "╋",im.o.fillchars = [[eob: ,
-      --                 -- fold = " ",
-                         foldopen = "",
-      --                     -- foldsep = " ",
-                            foldclose = "",
-                             }
+    horiz = "━",
+    --     --   horizup = "┻",
+    --       --   horizdown = "┳",
+    --         --   vert = "┃",
+    --           --   vertleft = "┫",
+    --             --   vertright = "┣",
+    --               --   verthoriz = "╋",im.o.fillchars = [[eob: ,
+    --                 -- fold = " ",
+    foldopen = "",
+    --                     -- foldsep = " ",
+    foldclose = "",
+}
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+vim.opt.foldlevel = 99
 
 if vim.fn.has("win32") == 1 then
     vim.opt.shell = "C:/Progra~1/Git/bin/bash.exe"
     vim.opt.shellcmdflag = "--login -i -c"
     vim.opt.shellxquote = ""
 end
-
