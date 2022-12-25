@@ -83,4 +83,11 @@ return require('packer').startup(function(use)
     -- }
 
     use 'folke/tokyonight.nvim'
+
+    use {
+       'narutoxy/dim.lua',
+        config = function()
+            require('dim').setup()
+        end
+    }
 end)
