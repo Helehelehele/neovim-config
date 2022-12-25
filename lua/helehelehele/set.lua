@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -32,15 +34,15 @@ vim.opt.splitright = true
 
 vim.opt.fillchars = {
     horiz = "━",
-    --     --   horizup = "┻",
-    --       --   horizdown = "┳",
-    --         --   vert = "┃",
-    --           --   vertleft = "┫",
-    --             --   vertright = "┣",
-    --               --   verthoriz = "╋",im.o.fillchars = [[eob: ,
-    --                 -- fold = " ",
+    --   horizup = "┻",
+    --   horizdown = "┳",
+    --   vert = "┃",
+    --   vertleft = "┫",
+    --   vertright = "┣",
+    --   verthoriz = "╋",im.o.fillchars = [[eob: ,
+    -- fold = " ",
     foldopen = "",
-    --                     -- foldsep = " ",
+    -- foldsep = " ",
     foldclose = "",
 }
 
