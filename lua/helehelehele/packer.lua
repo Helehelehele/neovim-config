@@ -85,9 +85,25 @@ return require('packer').startup(function(use)
     use 'folke/tokyonight.nvim'
 
     use {
-       'narutoxy/dim.lua',
+        'narutoxy/dim.lua',
         config = function()
             require('dim').setup()
+        end
+    }
+
+    use {
+        "folke/twilight.nvim",
+    }
+
+    -- Only load on Mac
+    if vim.fn.has('macunix') == 1 then
+        use { 'krivahtoo/silicon.nvim', run = './install.sh' }
+    end
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup()
         end
     }
 end)
