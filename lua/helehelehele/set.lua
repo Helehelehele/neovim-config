@@ -27,7 +27,12 @@ vim.opt.fileformat = "unix"
 
 vim.g.mapleader = " "
 
-vim.opt.guifont = "FiraCode Nerd Font:h11"
+if vim.fn.has('win32') == 1 then
+    vim.opt.guifont = "FiraCode NF:h16"
+end
+if vim.fn.has('macunix') == 1 then
+    vim.opt.guifont = "FiraCode Nerd Font:h11"
+end
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true

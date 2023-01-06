@@ -1,21 +1,27 @@
+local vim = vim
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'sumneko_lua',
-  'rust_analyzer',
+    'tsserver',
+    'eslint',
+    'sumneko_lua',
+    'rust_analyzer',
+    'clangd',
+    'cmake',
+    'elixirls',
+    'dockerls',
+    'jsonls',
 })
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
 })
 
 -- disable completion with tab
@@ -24,7 +30,7 @@ cmp_mappings['<Tab>'] = nil
 cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
+    mapping = cmp_mappings
 })
 
 lsp.set_preferences({
@@ -45,33 +51,33 @@ vim.diagnostic.config({
 })
 
 lsp.on_attach(function(client, bufnr)
-  local opts = {buffer = bufnr, remap = false}
+    local opts = { buffer = bufnr, remap = false }
 
-  if client.name == "eslint" then
-      vim.cmd.LspStop('eslint')
-      return
-  end
+    if client.name == "eslint" then
+        vim.cmd.LspStop('eslint')
+        return
+    end
 
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-  vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-  vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-  vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-  
-  vim.cmd('hi DiagnosticUnderlineError guifg=Red guibg=LightRed gui=undercurl')
-  vim.cmd('hi DiagnosticUnderlineWarn guifg=Orange guibg=LightOrange gui=undercurl')
-  vim.cmd('hi DiagnosticUnderlineInfo guifg=Blue guibg=LightBlue gui=undercurl')
-  vim.cmd('hi DiagnosticUnderlineHint guifg=Green guibg=LightGreen gui=undercurl')
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
-  vim.cmd('hi DiagnosticFloatingError guifg=LightRed')
-  vim.cmd('hi DiagnosticFloatingWarn guifg=LightOrange')
-  vim.cmd('hi DiagnosticFloatingInfo guifg=LightBlue')
-  vim.cmd('hi DiagnosticFloatingHint guifg=LightGreen')
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { fg = 'Red', bg = 'LightRed', undercurl = true })
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineWarn', { fg = 'Orange', bg = 'LightYellow', undercurl = true })
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineInfo', { fg = 'Blue', bg = 'LightBlue', undercurl = true })
+    vim.api.nvim_set_hl(0, 'DiagnosticUnderlineHint', { fg = 'Green', bg = 'LightGreen', undercurl = true })
+
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingError', { fg = 'LightRed' })
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingWarn', { fg = 'LightYellow' })
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingInfo', { fg = 'LightBlue' })
+    vim.api.nvim_set_hl(0, 'DiagnosticFloatingHint', { fg = 'LightGreen' })
 end)
 
 lsp.setup()
