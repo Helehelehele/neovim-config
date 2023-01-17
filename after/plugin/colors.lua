@@ -1,4 +1,3 @@
-
 -- require('github-theme').setup({
 --   theme_style = "dark_default",
 --   transparent = true
@@ -9,7 +8,7 @@
 local tokyonight = require('tokyonight')
 
 tokyonight.setup({
-    style = "moon",
+    style = "storm",
     transparent = "true",
     sidebars = {
         "qf",
@@ -24,6 +23,4 @@ tokyonight.load()
 
 vim.cmd('colorscheme tokyonight')
 
-
 vim.cmd('hi NormalFloat guibg=none')
-

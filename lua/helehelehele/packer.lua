@@ -22,6 +22,8 @@ return require('packer').startup(function(use)
     use('theprimeagen/harpoon')
     use('tpope/vim-fugitive')
 
+    use 'APZelos/blamer.nvim'
+
     use {
         'VonHeikemen/lsp-zero.nvim',
         requires = {
@@ -107,6 +109,4 @@ return require('packer').startup(function(use)
             require('gitsigns').setup()
         end
     }
-
-    use 'APZelos/blamer.nvim'
 end)
