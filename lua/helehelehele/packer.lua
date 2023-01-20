@@ -118,4 +118,6 @@ return require('packer').startup(function(use)
             "nvim-tree/nvim-web-devicons", -- optional dependency
         },
     })
+
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 end)
