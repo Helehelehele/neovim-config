@@ -109,4 +109,13 @@ return require('packer').startup(function(use)
             require('gitsigns').setup()
         end
     }
+
+    use({
+        "utilyre/barbecue.nvim",
+        requires = {
+            "neovim/nvim-lspconfig",
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+    })
 end)
