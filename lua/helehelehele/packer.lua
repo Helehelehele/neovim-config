@@ -120,4 +120,8 @@ return require('packer').startup(function(use)
     })
 
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+
+    use {
+        'nvim-tree/nvim-tree.lua',
+    }
 end)
