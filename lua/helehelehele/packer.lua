@@ -124,4 +124,6 @@ return require('packer').startup(function(use)
     use {
         'nvim-tree/nvim-tree.lua',
     }
+
+    use 'fedepujol/move.nvim'
 end)
