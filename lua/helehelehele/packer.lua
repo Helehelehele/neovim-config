@@ -126,4 +126,6 @@ return require('packer').startup(function(use)
     }
 
     use 'fedepujol/move.nvim'
+
+    use 'lewis6991/impatient.nvim'
 end)
