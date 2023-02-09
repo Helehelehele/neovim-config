@@ -46,6 +46,15 @@ return require('packer').startup(function(use)
         }
     }
 
+    -- null-ls
+    use {
+        "jay-babu/mason-null-ls.nvim",
+        requires = {
+            "jose-elias-alvarez/null-ls.nvim",
+            "williamboman/mason.nvim",
+        },
+    }
+
     use("folke/zen-mode.nvim")
     use("github/copilot.vim")
 
