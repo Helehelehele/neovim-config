@@ -14,7 +14,6 @@ require("nvim-tree").setup({
     filters = {
         dotfiles = true,
     },
-    open_on_setup = true,
     update_focused_file = {
         enable = true,
     },
@@ -37,4 +36,22 @@ vim.api.nvim_create_autocmd("BufEnter", {
     end
 })
 
-vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg=nil })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function(data)
+        -- buffer is a directory
+        local directory = vim.fn.isdirectory(data.file) == 1
+
+        if not directory then
+            return
+        end
+
+        -- change to the directory
+        vim.cmd.cd(data.file)
+
+        -- open the tree
+        require("nvim-tree.api").tree.open()
+    end
+})
+
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = nil })
