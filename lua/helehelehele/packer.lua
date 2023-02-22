@@ -85,7 +85,10 @@ return require("packer").startup(function(use)
 
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
-	use({ "alvarosevilla95/luatab.nvim", requires = "kyazdani42/nvim-web-devicons" })
+	use({
+		"alvarosevilla95/luatab.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+	})
 
 	-- use { 'justinhj/battery.nvim',
 	--     config = function()
@@ -138,4 +141,11 @@ return require("packer").startup(function(use)
 	use("lewis6991/impatient.nvim")
 
 	use("lukas-reineke/indent-blankline.nvim")
+
+	use({
+		"m4xshen/smartcolumn.nvim",
+		config = function()
+			require("smartcolumn").setup()
+		end,
+	})
 end)
