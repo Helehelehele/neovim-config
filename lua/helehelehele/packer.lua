@@ -145,7 +145,12 @@ return require("packer").startup(function(use)
 	use({
 		"m4xshen/smartcolumn.nvim",
 		config = function()
-			require("smartcolumn").setup()
+			require("smartcolumn").setup({
+				custom_colorcolumn = {
+					python = 120,
+					python3 = 120,
+				},
+			})
 		end,
 	})
 

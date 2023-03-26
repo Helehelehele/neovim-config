@@ -109,10 +109,29 @@ null_ls.setup({
 -- See mason-null-ls.nvim's documentation for more details:
 -- https://github.com/jay-babu/mason-null-ls.nvim#setup
 require("mason-null-ls").setup({
-	ensure_installed = nil,
+	ensure_installed = {
+		"python-lsp-server",
+	},
 	automatic_installation = false, -- You can still set this to `true`
 	automatic_setup = true,
 })
 
 -- Required when `automatic_setup` is true
 require("mason-null-ls").setup_handlers()
+
+require("lspconfig")["pylsp"].setup({
+	settings = {
+		pylsp = {
+			configurationSources = { "flake8" },
+			plugins = {
+				flake8 = {
+					enabled = true,
+					maxLineLength = 120,
+				},
+				pycodestyle = {
+					maxLineLength = 120,
+				},
+			},
+		},
+	},
+})
