@@ -160,4 +160,8 @@ return require("packer").startup(function(use)
 		"anuvyklack/fold-preview.nvim",
 		requires = "anuvyklack/keymap-amend.nvim",
 	})
+
+	use("mg979/vim-visual-multi")
+
+	use({ "kartikp10/noctis.nvim", requires = { "rktjmp/lush.nvim" } })
 end)
