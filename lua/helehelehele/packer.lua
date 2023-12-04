@@ -171,4 +171,6 @@ return require("packer").startup(function(use)
             require("neodev").setup()
         end
     })
+
+    use 'f-person/auto-dark-mode.nvim'
 end)
