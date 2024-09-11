@@ -111,7 +111,7 @@ return require("packer").startup(function(use)
 
     -- Only load on Mac
     if vim.fn.has("macunix") == 1 then
-        use({ "krivahtoo/silicon.nvim", run = "./install.sh" })
+        use({ "krivahtoo/silicon.nvim", run = "./install.sh build" })
     end
 
     use({

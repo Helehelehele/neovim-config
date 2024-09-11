@@ -50,20 +50,20 @@ vim.diagnostic.config({
 })
 
 lsp.on_attach(function(client, bufnr)
-    -- local opts = { buffer = bufnr, remap = false }
+    local opts = { buffer = bufnr, remap = false }
 
     lsp.default_keymaps({ bufnr = bufnr })
 
-    -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-    -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-    -- vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-    -- vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-    -- vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-    -- vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
-    -- vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-    -- vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
-    -- vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-    -- vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
+    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "<leader>vca", vim.lsp.buf.code_action, opts)
+    vim.keymap.set("n", "<leader>vrr", vim.lsp.buf.references, opts)
+    vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 
     vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { fg = "LightRed", undercurl = true })
     vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { fg = "Orange", undercurl = true })
@@ -108,9 +108,33 @@ null_ls.setup({
 require("mason-null-ls").setup({
     ensure_installed = {
         "python-lsp-server",
+        "sql-formatter",
     },
     automatic_installation = false, -- You can still set this to `true`
     automatic_setup = true,
+    handlers = {
+        ["sql-formatter"] = function()
+            if vim.fn.executable("sql-formatter") == 0 then return end
+            local node = require("nvim-treesitter.ts_utils").get_node_at_cursor(0)
+            if not node or node:type() ~= "string_content" then return end
+            require("plenary.job"):new({
+                command = "sql-formatter",
+                args = { "-l", "snowflake" },
+                writer = require("plenary.job"):new({
+                    command = "echo",
+                    vim.trim(vim.treesitter.get_node_text(node, 0))
+                }),
+                on_exit = vim.schedule_wrap(function(self, code)
+                    if code ~= 0 then return end
+                    local start_row, start_col, end_row, end_col = node:range()
+                    local results = self:result()
+                    table.insert(results, 1, "")
+                    table.insert(results, "")
+                    vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, results)
+                end),
+            }):start()
+        end
+    },
 })
 
 -- -- Required when `automatic_setup` is true
