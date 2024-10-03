@@ -1,8 +1,34 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        lazy = true,
+        -- lazy = true,
         build = ":TSUpdate",
+        config = function()
+            require("nvim-treesitter.configs").setup {
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
+                indent = {
+                    enable = true,
+                },
+                incremental_selection = {
+                    enable = true,
+                },
+                refactor = {
+                    highlight_definitions = { enable = true },
+                },
+                rainbow = {
+                    enable = true,
+                    extended_mode = true,
+                    max_file_lines = nil,
+                },
+            }
+        end,
+    },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        -- lazy = true,
     },
     {
         "folke/lazydev.nvim",
@@ -15,7 +41,7 @@ return {
             },
         },
     },
-    { "Bilal2453/luvit-meta", lazy = true },
+    { "Bilal2453/luvit-meta", }, --lazy = true },
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v4.x',
