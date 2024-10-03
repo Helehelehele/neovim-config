@@ -26,6 +26,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.fileformat = "unix"
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 if vim.fn.has('win32') == 1 then
     vim.opt.guifont = "FiraCode NF:h16"
@@ -57,7 +58,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 
 if vim.fn.has("win32") == 1 then
-    vim.opt.shell = "C:/Progra~1/Git/bin/bash.exe"
+    vim.opt.shell = "bash.exe"
     vim.opt.shellcmdflag = "--login -i -c"
     vim.opt.shellxquote = ""
 end
